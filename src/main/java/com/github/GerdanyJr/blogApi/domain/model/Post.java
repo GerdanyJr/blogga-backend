@@ -1,37 +1,33 @@
 package com.github.GerdanyJr.blogApi.domain.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Post {
     @Id
     private Integer id;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String body;
     private String[] tags;
     private Integer reactions;
     private String src;
     private LocalDateTime publishDate;
-    @OneToMany
-    private List<Comment> comments;
 
     public Post() {
     }
 
-    public Post(Integer id, String title, String body, String[] tags, Integer reactions, String src,
-            List<Comment> comments) {
+    public Post(Integer id, String title, String body, String[] tags, Integer reactions, String src) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.tags = tags;
         this.reactions = reactions;
         this.src = src;
-        this.comments = comments;
         publishDate = LocalDateTime.now();
     }
 
@@ -81,14 +77,6 @@ public class Post {
 
     public void setSrc(String src) {
         this.src = src;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public LocalDateTime getPublishDate() {
