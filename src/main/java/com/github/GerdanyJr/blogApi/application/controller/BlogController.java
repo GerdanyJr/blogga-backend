@@ -23,7 +23,8 @@ public class BlogController {
     }
 
     @GetMapping("posts")
-    public ResponseEntity<PaginatedPostsResponse> getPosts(@RequestParam Integer page) {
+    public ResponseEntity<PaginatedPostsResponse> getPosts(
+            @RequestParam(required = false, defaultValue = "0") Integer page) {
         return ResponseEntity.ok(blogService.getPosts(page));
     }
 
